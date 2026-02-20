@@ -1,5 +1,5 @@
 {
-  "name": "Flux app",
+  "name": "Flux",
   "short_name": "Flux",
   "description": "Sistema de Frente de Caixa e Gestão de Fluxo",
   "start_url": "index.html",
@@ -19,6 +19,7 @@
     }
   ]
 }
+
 
 
 
