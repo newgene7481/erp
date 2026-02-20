@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Controle de Estoque</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body>
+<div class="layout">
+
+  <!-- Menu lateral do sistema (fixo à esquerda) -->
+  <nav class="menu">
+    <button class="menu-btn ativo" data-tela="tela-estoque">ESTOQUE</button>
+    <button class="menu-btn" onclick="window.open('pdv.html','pdv','width=1200,height=700')">PDV</button>
+  </nav>
+
+  <!-- Container central do sistema -->
+  <div class="container">
+
+    <!-- Tela: Estoque -->
+    <section id="tela-estoque" class="tela ativa">
+
+      <h1>Produtos</h1>
+
+      <div class="actions">
+        <div class="search-box">
+          <input
+            id="search"
+            type="text"
+            placeholder="Buscar produtos..."
+            onkeyup="buscarProdutos()"
+          />
+          <button onclick="buscarProdutos()" aria-label="Buscar">
+            BUSCAR
+          </button>
+        </div>
+      </div>
+
+      <table style="text-align:center; border-collapse:collapse;">
+        <thead>
+          <tr>
+            <th>Cód. de Barras</th>
+            <th>Produto</th>
+            <th>Unid.</th>
+            <th>Qtd</th>
+            <th>Valor Venda</th>
+            <th>Ativo</th>
+          </tr>
+        </thead>
+        <tbody id="tabela-estoque"></tbody>
+      </table>
+
+    </section>
+
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,553 @@
+/* ============================================================
+   1. CONFIGURAÇÕES GLOBAIS E RESET
+   ============================================================ */
+
+/* Esconde a barra de rolagem (estética clean) */
+::-webkit-scrollbar {
+    display: none;
+}
+
+:root {
+    --bg-dark: #2c3e50;
+    --bg-light: #ecf0f1;
+    --primary-blue: #3498db;
+    --success-green: #27ae60;
+    --danger-red: #c0392b;
+    --text-dark: #2c3e50;
+    --border-color: #bdc3c7;
+}
+
+/* RESET BÁSICO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* APLICA A FONTE SEGOE UI EM TUDO QUE É TEXTO */
+body, input, button, select, textarea, h1, h2, h3, h4, h5, h6, p, span, div, strong, b, label {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* PROTEGE OS ÍCONES (Evita que virem quadrados) */
+i, .fas, .fa, .far {
+    font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", sans-serif !important;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-light);
+    overflow: hidden;
+}
+
+/* ============================================================
+   2. CABEÇALHO (HEADER)
+   ============================================================ */
+.top-bar {
+    background-color: black;
+    color: white;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    flex-shrink: 0;
+}
+
+.store-name { 
+    display: flex; 
+    align-items: center; 
+    height: 100%;
+}
+
+.logo-img {
+    height: 30px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* ============================================================
+   3. LAYOUT PRINCIPAL (DIVISÃO TELA)
+   ============================================================ */
+.main-container {
+    display: flex;
+    flex: 1;
+    height: calc(100vh - 50px);
+}
+
+/* LADO ESQUERDO: LISTA DE PRODUTOS */
+.product-list-section {
+    flex: 3;
+    background-color: white;
+    border-right: 2px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+}
+
+/* LADO DIREITO: BARRA LATERAL */
+.sidebar-section {
+    flex: 1;
+    min-width: 28em;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 15px;
+    justify-content: space-around;
+}
+
+/* ============================================================
+   4. TABELA DE ITENS (CARRINHO)
+   ============================================================ */
+
+/* Cabeçalho da Lista */
+.list-header {
+    display: grid;
+    grid-template-columns: 35px 90px 1fr 95px 75px 75px 30px;
+    gap: 10px;
+    padding: 10px;
+    align-items: center;
+    justify-items: center;
+    font-weight: bold;
+    font-size: 0.9em;
+    background-color: #dcdcdc;
+    border-bottom: 2px solid var(--border-color);
+    text-transform: uppercase;
+    color: #555;
+}
+
+/* Container com rolagem */
+.list-items-container {
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Linha do Item */
+.carrinho-item {
+    display: grid;
+    grid-template-columns: 35px 90px 1fr 95px 75px 75px 30px;
+    gap: 10px;
+    padding: 10px;
+    align-items: center;
+    justify-items: center;
+    border-bottom: 1px solid #eee;
+    font-size: 1em;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.carrinho-item:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Controles de Quantidade na Lista (Mini) */
+.cart-qtd-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-qtd-mini {
+    width: 24px;
+    height: 24px;
+    background-color: #303030;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qtd-input-cart {
+    width: 35px;
+    height: 24px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-weight: bold;
+    -moz-appearance: textfield;
+}
+.qtd-input-cart::-webkit-outer-spin-button,
+.qtd-input-cart::-webkit-inner-spin-button {
+    -webkit-appearance: none; margin: 0;
+}
+
+/* Botão Lixeira */
+.btn-delete-item {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.btn-delete-item:hover {
+    color: var(--danger-red);
+    background-color: #fee;
+}
+
+/* Animação de Deleção */
+.carrinho-item.confirm-delete {
+    background: #ffebeb;
+}
+.carrinho-item.confirm-delete .btn-delete-item {
+    background-color: var(--danger-red);
+    color: white;
+    animation: slideLeft 0.3s forwards;
+}
+
+/* ============================================================
+   5. CONTROLES E INPUTS (SIDEBAR)
+   ============================================================ */
+
+/* Input de Busca */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    gap: 5px;
+    z-index: 1001;
+}
+
+.product-input {
+    flex: 1;
+    padding: 10px;
+    font-size: 1.1rem;
+    border: 2px solid var(--primary-blue);
+    border-radius: 5px;
+    outline: none;
+}
+
+.btn-add-item {
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* Resultados da Busca (Dropdown) */
+.search-results-area {
+    position: absolute;
+    top: 100%; left: 0; width: 100%;
+    max-height: 250px;
+    overflow-y: auto;
+    background-color: white !important;
+    border: 1px solid #ccc;
+    z-index: 9999;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    display: none;
+}
+
+.search-results-area div {
+    color: black !important;
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.search-results-area div:hover,
+.search-results-area > div.result-active {
+    background-color: #e3f2fd !important;
+    color: #000 !important;
+    font-weight: bold;
+}
+
+/* Painel de Quantidade e Estoque */
+.product-controls-container {
+    background-color: #e9ecef;
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #dce4ec;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.stock-display {
+    font-weight: bold;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.controls-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Botões Grandes de Qtd (+ e -) */
+.qty-buttons {
+    display: flex;
+    align-items: center;
+}
+.btn-qty {
+    width: 35px; height: 35px;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    background: black;
+    color: white;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+}
+.btn-minus { border-radius: 5px 0 0 5px; }
+.btn-plus { border-radius: 0 5px 5px 0; }
+
+.input-qty-control {
+    width: 50px; height: 35px;
+    text-align: center;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    border-left: none; border-right: none;
+    font-weight: bold;
+    -moz-appearance: textfield;
+}
+.input-qty-control::-webkit-outer-spin-button,
+.input-qty-control::-webkit-inner-spin-button {
+    -webkit-appearance: none; margin: 0;
+}
+
+/* Botão Oversell (Trava de Estoque) */
+.btn-stock-lock {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 15px;
+    height: 35px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    color: #555;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.2s, color 0.2s;
+}
+.btn-stock-lock:hover { background-color: #f0f0f0; }
+
+/* Estados do Oversell */
+.btn-stock-lock.confirm-lock {
+    background-color: #f39c12; border-color: #e67e22; color: white;
+}
+.btn-stock-lock.unlocked {
+    background-color: #e74c3c; border-color: #e74c3c; color: white;
+}
+
+/* Info do Cliente */
+.customer-info {
+    padding: 10px;
+    background: #e9ecef;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+/* Totais */
+.totals-area {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.grand-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px dashed #ccc;
+    padding-top: 5px;
+}
+.grand-total .label { font-size: 1.2rem; font-weight: bold; }
+.grand-total .value { font-size: 1.8rem; font-weight: bold; color: var(--success-green); }
+
+/* ============================================================
+   6. GRID DE AÇÕES (BOTÕES INFERIORES)
+   ============================================================ */
+.actions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.btn-mini {
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    height: 60px;
+}
+.btn-mini i { font-size: 1.2rem; margin-bottom: 3px; }
+
+.btn-consult { background-color: #121212; }
+.btn-consult:hover { background-color: #000; }
+
+.btn-discount { background-color: #3498db; }
+.btn-discount:hover { background-color: #2e84be; }
+
+/* Botão Cancelar com Animação */
+.btn-cancel {
+    background-color: #e74c3c;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+.btn-cancel:hover { background-color: #c0392b; }
+
+.btn-cancel.confirm-active::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background-color: #c0392b;
+    z-index: -1;
+    transform-origin: left;
+    animation: slideTimer 3s linear forwards;
+}
+
+/* Botão Finalizar (Ocupa linha inteira) */
+.btn-finalize {
+    grid-column: span 3;
+    background-color: var(--success-green);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    height: 3em;
+    text-transform: uppercase;
+}
+.btn-finalize:hover { background-color: #219653; }
+.btn-finalize i { font-size: 1.5rem; }
+
+/* ============================================================
+   7. TELA DE AUTENTICAÇÃO (LOGIN DARK MINIMALISTA)
+   ============================================================ */
+
+/* Fundo Preto Total */
+.overlay-login {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: #000; 
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Caixa Transparente */
+.login-box {
+    background: transparent;
+    width: 320px;
+    text-align: center;
+    color: white;
+}
+
+/* Linha de Input (Input + Botão juntos) */
+.login-input-row {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #999999;
+    padding-bottom: 10px;
+    transition: 0.3s;
+}
+
+.login-input-row:focus-within {
+    border-bottom: 1px solid #fff;
+}
+
+/* Campo de Senha Invisível */
+#input-pin {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    letter-spacing: 8px;
+    outline: none;
+    text-align: left;
+    padding-left: 10px;
+}
+
+#input-pin::placeholder {
+    color: #999999;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+/* Botão Seta */
+#btn-entrar {
+    background: transparent;
+    border: none;
+    color: #999999;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 10px;
+    transition: 0.3s;
+}
+
+.login-input-row:focus-within #btn-entrar,
+#btn-entrar:hover {
+    color: #fff;
+    transform: translateX(5px);
+}
+
+/* Mensagem de Erro */
+.msg-erro {
+    color: #ff3b30;
+    font-size: 12px;
+    margin-top: 20px;
+    opacity: 0;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+.msg-erro.visivel { opacity: 1; }
+
+/* Animação de Erro (Shake) */
+.input-erro {
+    animation: shake 0.2s;
+    border-bottom-color: #ff3b30 !important;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@keyframes slideTimer {
+    from { transform: scaleX(1); }
+    to { transform: scaleX(0); }
+}
+
+@keyframes slideLeft {
+    from { transform: translateX(10px); opacity: 0.5; }
+    to { transform: translateX(0); opacity: 1; }
+}
