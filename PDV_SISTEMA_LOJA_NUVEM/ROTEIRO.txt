@@ -1,0 +1,74 @@
+[x] Cadastro automático de produto por EAN inexistente
+[x] Soma de quantidade por EAN existente
+[x] Campos essenciais do produto (EAN, nome, unid, estoque_atual, v_venda, ativo)
+[x] Busca por EAN e nome
+[x] Tabela de produtos
+[x] Ajuste manual de estoque (casos excepcionais)
+
+> Motivo da ordem: sem estoque correto, nada do resto funciona. O PDV depende 100% disso.
+
+ETAPA 2 – ENTRADA DE MERCADORIA (BACK / APOIO)
+
+[x] Importação de NF (CSV) para entradas_estoque
+[x] Validação de EAN na importação
+[x] Trigger: criar produto se EAN não existir
+[] Trigger: somar quantidade no produto se EAN existir
+[] Registro do custo (v_unit) para histórico e auditoria
+[] Atualização automática do dt_atualizacao em produtos
+
+> Motivo da ordem: garante que o estoque esteja sempre correto sem trabalho manual diário.
+
+ETAPA 3 – CAIXA / PDV (OPERAÇÃO DIÁRIA)
+
+[] Abertura de caixa – informar valor inicial para troco
+[] Registro de venda – leitura de EAN + quantidade
+[] Validação de estoque disponível antes de vender
+[] Forma de pagamento – dinheiro, PIX, débito, crédito
+[] Finalizar venda – grava venda e itens vendidos
+[] Atualização automática do estoque (subtração)
+[] Sangria – retirada de dinheiro sem afetar vendas
+[] Suprimento – entrada de dinheiro para troco
+[] Fechamento de caixa – total vendido vs saldo físico
+[] Reabertura de caixa – correção de erro operacional
+
+> Motivo da ordem: reflete exatamente o fluxo real de um dia de loja.
+
+ETAPA 4 – VENDAS (CONSULTA E CONTROLE)
+
+[] Histórico de vendas – visão cronológica
+[] Detalhe da venda – itens, valores, pagamento
+[] Cancelamento de venda – com rastreabilidade
+[] Devolução – total ou parcial
+[] Estorno automático de estoque na devolução
+
+> Motivo da ordem: só existe depois que o PDV existe e gera dados.
+
+ETAPA 5 – RELATÓRIOS (GESTÃO E CONTADOR)
+
+[] Relatório de vendas por período
+[] Relatório de produtos mais vendidos
+[] Relatório de estoque atual
+[] Exportação para Excel
+[] Resumo simples para conferência rápida
+
+> Motivo da ordem: relatórios só fazem sentido quando há histórico confiável.
+
+ETAPA 6 – CONFIGURAÇÕES (AJUSTES FINOS)
+
+[] Formas de pagamento ativas
+[] Permissões de cancelamento e devolução
+[] Regras operacionais do caixa
+[] Parâmetros gerais do sistema
+
+> Motivo da ordem: configuração vem depois que o sistema já está funcionando e entendido.
+
+ETAPA 7 – ROTINA FINAL DA LOJA (USO REAL)
+
+[] Abrir caixa
+[] Vender normalmente
+[] Fazer sangria se necessário
+[] Fechar caixa
+[] Conferir relatório
+[] Exportar dados quando precisar
+
+✔️
