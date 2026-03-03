@@ -606,7 +606,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (window.opener && !window.opener.closed) {
                 window.opener.focus();
             } else {
-                window.open('index.html', 'JanelaEstoque');
+                window.open('estoque.html', 'JanelaEstoque');
             }
         });
     }
@@ -775,3 +775,4 @@ window.fazerLogout = function() {
 
 
 });
+
