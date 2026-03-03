@@ -95,7 +95,7 @@ body {
     flex-direction: column;
     padding: 15px;
     gap: 15px;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 /* ============================================================
@@ -551,3 +551,4 @@ body {
     from { transform: translateX(10px); opacity: 0.5; }
     to { transform: translateX(0); opacity: 1; }
 }
+
