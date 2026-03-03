@@ -2,7 +2,7 @@
   "name": "Flux",
   "short_name": "Flux",
   "description": "Sistema de Frente de Caixa e Gestão de Fluxo",
-  "start_url": "index.html",
+  "start_url": "estoque.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
@@ -19,3 +19,4 @@
     }
   ]
 }
+
